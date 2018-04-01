@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+</head>
+
+<body>
+
+	<div data-ng-controller="ProjetoController as vm" class="container">
+
+		<!-- esta parte representa a tela de inclusao/edicao -->
+		<div class="row">
+			<div data-ng-form="projetoForm" class="col s12">
+				<h5 class="center-align">Manter Projetos</h5>
+				<div class="row z-depth-5 "
+					style="padding: 15px; border-radius: 15px;">
+					<div class="col s12 input-field">
+						<input required="required" placeholder="Nome"
+							data-ng-model="vm.manter.projeto.nome" id="nome" type="text"
+							class="validate"> <label for="nome">Nome</label>
+					</div>
+					<div class="col s12">
+						<p>
+							<label for="status">Status</label>
+						</p>
+						<div data-ng-repeat="status in vm.status track by $index"
+							style="display: inline;">
+							<label for="status{{$index}}"> <input required="required"
+								data-ng-model="vm.manter.projeto.status" class="with-gap"
+								name="status" type="radio" id="status{{$index}}"
+								data-ng-value="status.id" /> <span>{{status.descricao}}</span></label>
+						</div>
+					</div>
+					<div class="col s12">
+						<br />
+						<button data-target="modal" class="btn modal-trigger">Membros</button>
+						<div id="modal" class="modal">
+							<div class="modal-content">
+								<h5>Pessoas</h5>
+								<p>Selecione as pessoas que terão acesso ao projeto</p>
+								<div
+									data-ng-repeat="pessoa in vm.manter.pessoas track by $index">
+									<p>
+										<label> <input
+											data-ng-model="vm.pessoasSelecionadas[pessoa.id]"
+											type="checkbox" /> <span>{{pessoa.nome}}</span>
+										</label>
+									</p>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<a href="" data-ng-click="vm.selecionarPessoas();"
+									class="modal-action modal-close waves-effect waves-green btn">Fechar</a>
+							</div>
+						</div>
+					</div>
+					<div class="col s12">
+						<br />
+						<div
+							data-ng-repeat="pessoa in vm.manter.projeto.pessoas track by $index"
+							style="display: inline;">
+							<div class="chip">{{pessoa.nome}}</div>
+						</div>
+
+					</div>
+					<div class="col s12 offset-s5">
+						<br /> <a data-ng-click="vm.salvar()"
+							data-ng-disabled="projetoForm.$invalid"
+							class="waves-effect waves-light btn">Salvar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- esta parte representa a tela que contém o grid com uma lista de dados -->
+		<div class="row">
+			<div class="col s12">
+				<h5 class="center-align">Lista de Projetos</h5>
+				<div class="row z-depth-5 "
+					style="padding: 15px; border-radius: 15px;">
+					<div class="col s12">
+
+						<table class="responsive-table centered striped">
+							<thead>
+								<tr>
+									<th>Nome</th>
+									<th>Status</th>
+									<th>Ações</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr
+									data-ng-repeat="projeto in vm.manter.projetos track by $index">
+									<td style="word-break: break-all;">{{ projeto.nome }}</td>
+									<td>{{ vm.status[projeto.status - 1].descricao }}</td>
+									<td><i data-ng-click="vm.editar(projeto)"
+										style="cursor: pointer;" class="material-icons">mode_edit</i>
+										<i
+										data-ng-if="!(projeto.status === vm.status[3].id || projeto.status === vm.status[5].id || projeto.status === vm.status[6].id)"
+										data-ng-click="vm.excluir(projeto.id)"
+										style="cursor: pointer;" class="material-icons">close</i></td>
+								</tr>
+							</tbody>
+
+							<tbody data-ng-if="vm.manter.projetos.length === 0">
+								<tr>
+									<td colspan="3" class="center-align">Não existem projetos
+										no momentos</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+
+	<script src="app/app.js"></script>
+
+	<script src="app/projeto/modal.directive.js"></script>
+	<script src="app/projeto/projeto.service.js"></script>
+	<script src="app/projeto/status.constants.js"></script>
+	<script src="app/projeto/projeto.controller.js"></script>
+
+</body>
+
+</html>
+
