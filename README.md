@@ -27,15 +27,15 @@ Abaixo segue o que será necessário para a instalação do aplicativo, bem como
 <b>Instalação</b>:
  <li>Importe o projeto no eclipse, opção (Existing Maven Projects), faça a instalação dos pacotes necessários com Run As -> Maven Install sobre arquivo pom.xml</li>
  <li>O arquivo persistence.xml define o seguinte jta para configurar no servidor java ee 7: java:jboss/projeto. Portanto, para configurar o banco de dados, entre no servidor e mapeie um banco dados para java:jboss/projeto<br/>
-Exemplo de entrada no meu arquivo standalone.xml em meu jboss. Incluir dentro de tag <datasources></datasources><br/>
-`<datasource jta="true" jndi-name="java:jboss/projeto" pool-name="projeto" enabled="true" use-ccm="true">`<br/>
-`<connection-url>jdbc:postgresql://localhost:5432/projeto</connection-url>`<br/>
-`<driver>postgresql-9.4-1204.jdbc4.jar</driver>`<br/>
-`<security>`<br/>
-`<user-name>postgres</user-name>`<br/>
-`<password>postgres</password>`<br/>
-`</security>`<br/>
-`</datasource>`<br/>
+Exemplo de entrada no meu arquivo standalone.xml em meu jboss. Incluir dentro de tag < datasources>< /datasources><br/>
+`< datasource jta="true" jndi-name="java:jboss/projeto" pool-name="projeto" enabled="true" use-ccm="true">`<br/>
+`< connection-url>jdbc:postgresql://localhost:5432/projeto</connection-url>`<br/>
+`< driver>postgresql-9.4-1204.jdbc4.jar</driver>`<br/>
+`< security>`<br/>
+`< user-name>postgres</user-name>`<br/>
+`< password>postgres</password>`<br/>
+`< /security>`<br/>
+`< /datasource>`<br/>
 Criar o banco de dados no postgres, vazio. (A aplicação irá gerar o banco conforme mapeamento feito nas entidades)
 </li>
 <b>Testes Unitários</b>:
