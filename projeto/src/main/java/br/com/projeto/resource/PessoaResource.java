@@ -11,6 +11,12 @@ import br.com.projeto.domain.Pessoa;
 import br.com.projeto.exception.CamposObrigatoriosException;
 import br.com.projeto.service.PessoaService;
 
+/**
+ * Representa o acesso ao serviço de gestao de pessoas
+ * 
+ * @author andrerafaelmezzalira
+ *
+ */
 @Path("/pessoa")
 public class PessoaResource {
 
@@ -19,6 +25,12 @@ public class PessoaResource {
 	@Inject
 	private PessoaService service;
 
+	/**
+	 * Representa um acesso ao serviço de inserção de pessoas
+	 * 
+	 * @param pessoa
+	 * @return
+	 */
 	@POST
 	public Response insert(Pessoa pessoa) {
 

@@ -13,6 +13,12 @@ import br.com.projeto.exception.InserePessoaException;
 import br.com.projeto.exception.StatusProjetoException;
 import br.com.projeto.repository.ProjetoRepository;
 
+/**
+ * Representa o servico que representa a entidade Projeto
+ * 
+ * @author andrerafaelmezzalira
+ *
+ */
 @Stateless
 public class ProjetoService {
 
@@ -26,6 +32,13 @@ public class ProjetoService {
 		return repository.listAll();
 	}
 
+	/**
+	 * Faz as validacoes no objeto Projeto e efetua a gravacao no banco de dados
+	 * 
+	 * @param projeto
+	 * @throws CamposObrigatoriosException
+	 * @throws InserePessoaException
+	 */
 	public void salvar(Projeto projeto) throws CamposObrigatoriosException, InserePessoaException {
 
 		// valida os campos obrigatorios
@@ -51,7 +64,7 @@ public class ProjetoService {
 				}
 
 				if (!pessoa.getFuncionario()) {
-					throw new InserePessoaException("Pessoa não é um funcionario");
+					throw new InserePessoaException("Pessoa não é um funcionário");
 				}
 			}
 		}
@@ -63,6 +76,13 @@ public class ProjetoService {
 		}
 	}
 
+	/**
+	 * Faz as validacoes necessarias antes de excluir um projeto
+	 * 
+	 * @param id
+	 * @return
+	 * @throws StatusProjetoException
+	 */
 	public Projeto excluir(Integer id) throws StatusProjetoException {
 		Projeto projeto = repository.findById(id);
 

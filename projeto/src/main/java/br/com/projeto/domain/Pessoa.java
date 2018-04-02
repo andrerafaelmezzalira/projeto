@@ -10,6 +10,12 @@ import javax.persistence.NamedQuery;
 
 import br.com.projeto.arq.AbstractEntity;
 
+/**
+ * Representa a entidade pessoa no banco de dados
+ * 
+ * @author andrerafaelmezzalira
+ *
+ */
 @Entity
 @NamedQueries({
 		@NamedQuery(name = Pessoa.LISTAR_FUNCIONARIOS, query = "select p from Pessoa p where p.funcionario = true order by p.nome"), })

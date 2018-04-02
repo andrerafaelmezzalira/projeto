@@ -1,5 +1,9 @@
 (function() {
 
+	/**
+	 * Carrega uma modal para onde tiver o class="modal" definido em html
+	 */
+
 	var ModalDirective = function() {
 		return {
 			restrict : 'C',

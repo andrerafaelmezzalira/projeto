@@ -1,5 +1,13 @@
 (function() {
 
+	/**
+	 * 
+	 * Representa o controlador da tela de gestao de projetos
+	 * 
+	 * @param Status
+	 * @param ProjetoService
+	 * @returns
+	 */
 	function ProjetoController(Status, ProjetoService) {
 
 		var vm = this;
@@ -18,7 +26,14 @@
 
 		}
 
+		/**
+		 * Ao clicar em Fechar o modal, é feito a selecao das pessoas checadadas
+		 * para formar o time de membros do projeto
+		 */
 		function selecionarPessoas() {
+			if (!vm.manter.projeto) {
+				vm.manter.projeto = {};
+			}
 			vm.manter.projeto.pessoas = [];
 			for ( var idPessoa in vm.pessoasSelecionadas) {
 				if (vm.pessoasSelecionadas[idPessoa]) {
@@ -33,12 +48,18 @@
 			}
 		}
 
+		/**
+		 * Obtem do servidor os projetos e usuarios
+		 */
 		function listar() {
 			ProjetoService.listar().then(function(response) {
 				vm.manter = response.data;
 			});
 		}
 
+		/**
+		 * Salva um projeto
+		 */
 		function salvar() {
 			ProjetoService.salvar(vm.manter.projeto).then(function(response) {
 				M.toast({
@@ -48,6 +69,9 @@
 			});
 		}
 
+		/**
+		 * Carrega o formulario com os dados do projeto para edicao
+		 */
 		function editar(projeto) {
 			vm.manter.projeto = angular.copy(projeto);
 			if (vm.manter.projeto.pessoas) {
@@ -58,6 +82,9 @@
 			}
 		}
 
+		/**
+		 * Realiza a exclusao de um projeto
+		 */
 		function excluir(id) {
 			ProjetoService.excluir(id).then(function(response) {
 				M.toast({

@@ -12,6 +12,12 @@ import javax.persistence.ManyToMany;
 
 import br.com.projeto.arq.AbstractEntity;
 
+/**
+ * Representa a entidae Projeto no banco de dados
+ * 
+ * @author andrerafaelmezzalira
+ *
+ */
 @Entity
 public class Projeto implements AbstractEntity<Integer> {
 

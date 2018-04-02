@@ -40,8 +40,13 @@
 						</div>
 					</div>
 					<div class="col s12">
+
 						<br />
+
 						<button data-target="modal" class="btn modal-trigger">Membros</button>
+
+						<!-- modal com a lista de usuarios -->
+
 						<div id="modal" class="modal">
 							<div class="modal-content">
 								<h5>Pessoas</h5>
@@ -54,6 +59,9 @@
 											type="checkbox" /> <span>{{pessoa.nome}}</span>
 										</label>
 									</p>
+								</div>
+								<div data-ng-if="vm.manter.pessoas.length === 0">
+									Não existem pessoas cadastradas
 								</div>
 							</div>
 							<div class="modal-footer">

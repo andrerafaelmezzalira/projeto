@@ -22,6 +22,12 @@ import br.com.projeto.exception.StatusProjetoException;
 import br.com.projeto.service.PessoaService;
 import br.com.projeto.service.ProjetoService;
 
+/**
+ * Representa o acesso ao serviço de gestao de projetos
+ * 
+ * @author andrerafaelmezzalira
+ *
+ */
 @Path("/projeto")
 public class ProjetoResource {
 
@@ -33,6 +39,11 @@ public class ProjetoResource {
 	@Inject
 	private PessoaService pessoaService;
 
+	/**
+	 * Lista todos os projetos
+	 * 
+	 * @return
+	 */
 	@GET
 	public Response listar() {
 
@@ -48,6 +59,12 @@ public class ProjetoResource {
 		return Response.ok(response).build();
 	}
 
+	/**
+	 * Representa a inclusao de um projeto
+	 * 
+	 * @param projeto
+	 * @return
+	 */
 	@POST
 	public Response insert(Projeto projeto) {
 
@@ -64,6 +81,12 @@ public class ProjetoResource {
 
 	}
 
+	/**
+	 * Representa a alteracao de um projeto
+	 * 
+	 * @param projeto
+	 * @return
+	 */
 	@PUT
 	public Response update(Projeto projeto) {
 
@@ -80,6 +103,12 @@ public class ProjetoResource {
 		}
 	}
 
+	/**
+	 * Representa a exclusao de um projeto
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@DELETE
 	public Response delete(@QueryParam("id") Integer id) {
 

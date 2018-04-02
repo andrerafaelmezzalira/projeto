@@ -1,5 +1,8 @@
 (function() {
 
+	/**
+	 * Mapeia os pacotes e suas funcionalidades
+	 */
 	angular.module('app.constants', []);
 	angular.module('app.directives', []);
 	angular.module('app.services', []);

@@ -1,5 +1,8 @@
 (function() {
 
+	/**
+	 * Representa um status de um projeto
+	 */
 	var Status = [ {
 		id : 1,
 		descricao : 'Em Análise'
