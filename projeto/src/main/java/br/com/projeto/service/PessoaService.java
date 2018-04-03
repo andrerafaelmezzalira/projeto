@@ -41,12 +41,12 @@ public class PessoaService {
 	}
 
 	/**
-	 * Retorna uma lista de funcionarios
+	 * Retorna uma lista de pessoas
 	 * 
 	 * @return
 	 */
-	public List<Pessoa> listarFuncionarios() {
-		return repository.listarFuncionarios();
+	public List<Pessoa> listar() {
+		return repository.listAll();
 	}
 
 	/**

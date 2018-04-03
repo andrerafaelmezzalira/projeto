@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import br.com.projeto.arq.AbstractEntity;
 
@@ -19,9 +21,11 @@ import br.com.projeto.arq.AbstractEntity;
  *
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = Projeto.LISTAR, query = "select p from Projeto p order by p.nome"), })
 public class Projeto implements AbstractEntity<Integer> {
 
 	private static final long serialVersionUID = 1L;
+	public static final String LISTAR = "listar";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -50,7 +50,7 @@ public class ProjetoResource {
 		log.info(" rodando método listar()  ");
 
 		List<Projeto> projetos = projetoService.listar();
-		List<Pessoa> pessoas = pessoaService.listarFuncionarios();
+		List<Pessoa> pessoas = pessoaService.listar();
 
 		Map<String, Object> response = new HashMap<>();
 		response.put("projetos", projetos);

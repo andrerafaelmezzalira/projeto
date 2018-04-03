@@ -28,8 +28,13 @@ public class ProjetoService {
 	@Inject
 	private PessoaService service;
 
+	/**
+	 * Retorna uma lista de projetos ordenados pelo nome
+	 * 
+	 * @return
+	 */
 	public List<Projeto> listar() {
-		return repository.listAll();
+		return repository.listar();
 	}
 
 	/**

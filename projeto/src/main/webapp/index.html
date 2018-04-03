@@ -52,7 +52,7 @@
 								<h5>Pessoas</h5>
 								<p>Selecione as pessoas que terão acesso ao projeto</p>
 								<div
-									data-ng-repeat="pessoa in vm.manter.pessoas track by $index">
+									data-ng-repeat="pessoa in vm.manter.pessoas | filter:{funcionario:true} track by $index">
 									<p>
 										<label> <input
 											data-ng-model="vm.pessoasSelecionadas[pessoa.id]"
@@ -60,9 +60,8 @@
 										</label>
 									</p>
 								</div>
-								<div data-ng-if="vm.manter.pessoas.length === 0">
-									Não existem pessoas cadastradas
-								</div>
+								<div data-ng-if="vm.manter.pessoas.length === 0">Não
+									existem pessoas cadastradas</div>
 							</div>
 							<div class="modal-footer">
 								<a href="" data-ng-click="vm.selecionarPessoas();"
