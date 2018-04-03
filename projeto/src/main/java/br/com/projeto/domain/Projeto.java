@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -36,8 +37,11 @@ public class Projeto implements AbstractEntity<Integer> {
 
 	private Integer status;
 
+	@ManyToOne
+	private Pessoa gerente;
+
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Pessoa> pessoas;
+	private List<Pessoa> funcionarios;
 
 	@Override
 	public Integer getId() {
@@ -65,11 +69,19 @@ public class Projeto implements AbstractEntity<Integer> {
 		return status;
 	}
 
-	public void setPessoas(List<Pessoa> pessoas) {
-		this.pessoas = pessoas;
+	public void setGerente(Pessoa gerente) {
+		this.gerente = gerente;
 	}
 
-	public List<Pessoa> getPessoas() {
-		return pessoas;
+	public Pessoa getGerente() {
+		return gerente;
+	}
+
+	public void setFuncionarios(List<Pessoa> funcionarios) {
+		this.funcionarios = funcionarios;
+	}
+
+	public List<Pessoa> getFuncionarios() {
+		return funcionarios;
 	}
 }

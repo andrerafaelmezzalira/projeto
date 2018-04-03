@@ -19,6 +19,7 @@
 			vm.editar = editar;
 			vm.excluir = excluir;
 			vm.selecionarPessoas = selecionarPessoas;
+			vm.selecionarPessoasGerente = selecionarPessoasGerente;
 
 			vm.status = Status;
 
@@ -27,33 +28,13 @@
 		}
 
 		/**
-		 * Ao clicar em Fechar o modal, é feito a selecao das pessoas checadadas
-		 * para formar o time de membros do projeto
-		 */
-		function selecionarPessoas() {
-			if (!vm.manter.projeto) {
-				vm.manter.projeto = {};
-			}
-			vm.manter.projeto.pessoas = [];
-			for ( var idPessoa in vm.pessoasSelecionadas) {
-				if (vm.pessoasSelecionadas[idPessoa]) {
-					for (var i = 0; i < vm.manter.pessoas.length; i++) {
-						if (vm.manter.pessoas[i].id === parseInt(idPessoa)) {
-							vm.manter.projeto.pessoas
-									.push(vm.manter.pessoas[i]);
-							break;
-						}
-					}
-				}
-			}
-		}
-
-		/**
 		 * Obtem do servidor os projetos e usuarios
 		 */
 		function listar() {
 			ProjetoService.listar().then(function(response) {
 				vm.manter = response.data;
+				delete vm.pessoasSelecionadas;
+				delete vm.gerenteSelecionado;
 			});
 		}
 
@@ -74,11 +55,14 @@
 		 */
 		function editar(projeto) {
 			vm.manter.projeto = angular.copy(projeto);
-			if (vm.manter.projeto.pessoas) {
+			if (vm.manter.projeto.funcionarios) {
 				vm.pessoasSelecionadas = {};
-				for (var i = 0; i < vm.manter.projeto.pessoas.length; i++) {
-					vm.pessoasSelecionadas[vm.manter.projeto.pessoas[i].id] = true;
+				for (var i = 0; i < vm.manter.projeto.funcionarios.length; i++) {
+					vm.pessoasSelecionadas[vm.manter.projeto.funcionarios[i].id] = true;
 				}
+			}
+			if (vm.manter.projeto.gerente) {
+				vm.gerenteSelecionado = vm.manter.projeto.gerente.id;
 			}
 		}
 
@@ -93,6 +77,45 @@
 				listar();
 			});
 		}
+
+		/**
+		 * Ao clicar em Fechar o modal, é feito a selecao das pessoas checadadas
+		 * para formar o time de membros do projeto
+		 */
+		function selecionarPessoas() {
+			if (!vm.manter.projeto) {
+				vm.manter.projeto = {};
+			}
+			vm.manter.projeto.funcionarios = [];
+			for ( var idPessoa in vm.pessoasSelecionadas) {
+				if (vm.pessoasSelecionadas[idPessoa]) {
+					for (var i = 0; i < vm.manter.pessoas.length; i++) {
+						if (vm.manter.pessoas[i].id === parseInt(idPessoa)) {
+							vm.manter.projeto.funcionarios
+									.push(vm.manter.pessoas[i]);
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		/**
+		 * Ao clicar em Fechar o modal, é feito a selecao das pessoa marcada
+		 * para tornar gerente do projeto
+		 */
+		function selecionarPessoasGerente() {
+			if (!vm.manter.projeto) {
+				vm.manter.projeto = {};
+			}
+			for (var i = 0; i < vm.manter.pessoas.length; i++) {
+				if (vm.manter.pessoas[i].id === parseInt(vm.gerenteSelecionado)) {
+					vm.manter.projeto.gerente = vm.manter.pessoas[i];
+					break;
+				}
+			}
+		}
+
 	}
 
 	ProjetoController.$inject = [ 'Status', 'ProjetoService' ];

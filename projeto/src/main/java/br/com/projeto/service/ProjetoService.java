@@ -56,8 +56,8 @@ public class ProjetoService {
 		}
 
 		// valida se as pessoas sao apenas funcionarios
-		if (projeto.getPessoas() != null && !projeto.getPessoas().isEmpty()) {
-			for (Pessoa pessoa : projeto.getPessoas()) {
+		if (projeto.getFuncionarios() != null && !projeto.getFuncionarios().isEmpty()) {
+			for (Pessoa pessoa : projeto.getFuncionarios()) {
 				if (pessoa.getId() == null) {
 					throw new InserePessoaException("Pessoa não existe no banco");
 				}

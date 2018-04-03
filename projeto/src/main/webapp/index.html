@@ -27,6 +27,44 @@
 							data-ng-model="vm.manter.projeto.nome" id="nome" type="text"
 							class="validate"> <label for="nome">Nome</label>
 					</div>
+
+
+					<div class="col s12">
+
+						<br />
+
+						<button data-target="modalGerente" class="btn modal-trigger">Gerente</button>
+
+						<!-- modal com a lista de usuarios -->
+
+						<div id="modalGerente" class="modal">
+							<div class="modal-content">
+								<h5>Gerente</h5>
+								<p>Selecione uma pessoa para ser gerente do projeto</p>
+								<div
+									data-ng-repeat="pessoa in vm.manter.pessoas track by $index">
+									<p>
+										<label> <input name="radioButtons"
+											class="with-gap"
+											data-ng-model="vm.gerenteSelecionado"
+											data-ng-value="pessoa.id" type="radio" /> <span>{{pessoa.nome}}</span>
+										</label>
+									</p>
+								</div>
+								<div data-ng-if="vm.manter.pessoas.length === 0">Não
+									existem pessoas cadastradas</div>
+							</div>
+							<div class="modal-footer">
+								<a href="" data-ng-click="vm.selecionarPessoasGerente();"
+									class="modal-action modal-close waves-effect waves-green btn">Fechar</a>
+							</div>
+						</div>
+					</div>
+					<div class="col s12">
+						<br />
+						<div data-ng-if="vm.manter.projeto.gerente" class="chip">{{vm.manter.projeto.gerente.nome}}</div>
+					</div>
+
 					<div class="col s12">
 						<p>
 							<label for="status">Status</label>
@@ -49,8 +87,8 @@
 
 						<div id="modal" class="modal">
 							<div class="modal-content">
-								<h5>Pessoas</h5>
-								<p>Selecione as pessoas que terão acesso ao projeto</p>
+								<h5>Funcionários</h5>
+								<p>Selecione os funcionários que serão membros do projeto</p>
 								<div
 									data-ng-repeat="pessoa in vm.manter.pessoas | filter:{funcionario:true} track by $index">
 									<p>
@@ -72,7 +110,7 @@
 					<div class="col s12">
 						<br />
 						<div
-							data-ng-repeat="pessoa in vm.manter.projeto.pessoas track by $index"
+							data-ng-repeat="pessoa in vm.manter.projeto.funcionarios track by $index"
 							style="display: inline;">
 							<div class="chip">{{pessoa.nome}}</div>
 						</div>
