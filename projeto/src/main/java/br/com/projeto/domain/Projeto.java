@@ -1,5 +1,6 @@
 package br.com.projeto.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -42,6 +43,8 @@ public class Projeto implements AbstractEntity<Integer> {
 
 	@ManyToOne
 	private Pessoa gerente;
+
+	private Date dataInicio;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Pessoa> funcionarios;
@@ -94,5 +97,13 @@ public class Projeto implements AbstractEntity<Integer> {
 
 	public String getDescricao() {
 		return descricao;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
 	}
 }

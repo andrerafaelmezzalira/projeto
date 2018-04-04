@@ -33,6 +33,12 @@
 		function listar() {
 			ProjetoService.listar().then(function(response) {
 				vm.manter = response.data;
+				
+				for (var i = 0; i < vm.manter.projetos.length; i++) {
+					if (vm.manter.projetos[i].dataInicio) {
+						vm.manter.projetos[i].dataInicio = new Date(vm.manter.projetos[i].dataInicio);
+					}
+				}
 				delete vm.pessoasSelecionadas;
 				delete vm.gerenteSelecionado;
 			});
