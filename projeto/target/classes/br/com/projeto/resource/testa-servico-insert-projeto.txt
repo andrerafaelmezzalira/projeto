@@ -1,4 +1,0 @@
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{
-"nome": "Projeto Financeiro",
-"status": 1
-}' 'http://localhost:8080/projeto/resources/projeto'

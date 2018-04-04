@@ -1,5 +1,0 @@
-curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{
-"id": 1,
-"nome": "Projeto Laboratório de Códigos",
-"status": 2
-}' 'http://localhost:8080/projeto/resources/projeto'

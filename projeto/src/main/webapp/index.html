@@ -44,8 +44,7 @@
 								<div
 									data-ng-repeat="pessoa in vm.manter.pessoas track by $index">
 									<p>
-										<label> <input name="radioButtons"
-											class="with-gap"
+										<label> <input name="radioButtons" class="with-gap"
 											data-ng-model="vm.gerenteSelecionado"
 											data-ng-value="pessoa.id" type="radio" /> <span>{{pessoa.nome}}</span>
 										</label>
@@ -115,6 +114,12 @@
 							<div class="chip">{{pessoa.nome}}</div>
 						</div>
 
+					</div>
+					<div class="input-field col s12">
+						<textarea data-ng-model="vm.manter.projeto.descricao"
+							placeholder="Descrição" id="descricao"
+							class="materialize-textarea"></textarea>
+						<label for="descricao">Descrição</label>
 					</div>
 					<div class="col s12 offset-s5">
 						<br /> <a data-ng-click="vm.salvar()"

@@ -35,7 +35,10 @@ public class Projeto implements AbstractEntity<Integer> {
 	@Column(nullable = false)
 	private String nome;
 
+	@Column(nullable = false)
 	private Integer status;
+
+	private String descricao;
 
 	@ManyToOne
 	private Pessoa gerente;
@@ -83,5 +86,13 @@ public class Projeto implements AbstractEntity<Integer> {
 
 	public List<Pessoa> getFuncionarios() {
 		return funcionarios;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getDescricao() {
+		return descricao;
 	}
 }

@@ -1,1 +1,0 @@
-curl -X DELETE --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/projeto/resources/projeto?id=1'
